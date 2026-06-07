@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hub Aula 2</title>
+</head>
+
+<!--
+  ============================================================
+  CLASSE "hub" no <body>
+  ============================================================
+  Marca esta página como o hub. As animações de fundo (mesh
+  com blobs) e os efeitos extras nos cards só são aplicados
+  quando o body tem .hub — assim as subpáginas não herdam
+  esses efeitos pesados.
+-->
+<body class="hub">
+
+    <!--
+      ============================================================
+      FUNDO ANIMADO (BG MESH)
+      ============================================================
+      Três círculos coloridos e desfocados (.mesh-blob) flutuam
+      atrás de todo o conteúdo. Animação "drift" no CSS — cada
+      blob tem um animation-delay diferente pros movimentos
+      não ficarem sincronizados.
+    -->
+    <div class="bg-mesh" aria-hidden="true">
+        <span class="mesh-blob mesh-blob-1"></span>
+        <span class="mesh-blob mesh-blob-2"></span>
+        <span class="mesh-blob mesh-blob-3"></span>
+    </div>
+
+    <!--
+      ============================================================
+      HEADER
+      ============================================================
+      .hub-header usa "fadeInDown" (entra de cima).
+      O símbolo { } usa "pulse" (cresce e diminui).
+      O <h1> tem uma barra animada abaixo (::after) com "shimmer".
+    -->
+    <header class="hub-header">
+        <div class="logo">
+            <span class="icon">{ }</span>
+            <h1>Hub Aula 2</h1>
+        </div>
+    </header>
+
+    <!--
+      ============================================================
+      GRID DE CARDS
+      ============================================================
+      Cada card usa a animação "cardIn" (sobe e aparece).
+      O atributo  style="--i: N"  vira a variável CSS --i,
+      que controla o delay: cada card entra um pouquinho
+      depois do anterior (efeito cascata / stagger).
+
+      Hover:
+        - O card sobe (transform: translateY).
+        - .card-border (borda em gradiente cônico) começa a girar.
+        - .card-shine passa um "brilho" diagonal por cima.
+        - A seta no .learn-more desliza pra direita.
+      Tudo via :hover, sem JS.
+    -->
+    <main class="hub-grid force-2x2">
+        <a href="java/index.html" class="subject-card" data-subject="java" style="--i:0">
+            <span class="card-border" aria-hidden="true"></span>
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-inner">
+                <div class="subject-tag">Backend</div>
+                <h2>Java</h2>
+                <p>Orientação a objetos, JVM e ecossistema Spring.</p>
+                <span class="learn-more">acessar <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <a href="php/index.html" class="subject-card" data-subject="php" style="--i:1">
+            <span class="card-border" aria-hidden="true"></span>
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-inner">
+                <div class="subject-tag">Web</div>
+                <h2>PHP</h2>
+                <p>Server-side scripting, Laravel e integração com banco.</p>
+                <span class="learn-more">acessar <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <a href="html-css-js/index.html" class="subject-card" data-subject="web" style="--i:2">
+            <span class="card-border" aria-hidden="true"></span>
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-inner">
+                <div class="subject-tag">Frontend</div>
+                <h2>HTML, CSS e JavaScript</h2>
+                <p>A trindade da web: estrutura, estilo e interatividade.</p>
+                <span class="learn-more">acessar <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <a href="db/index.html" class="subject-card" data-subject="db" style="--i:3">
+            <span class="card-border" aria-hidden="true"></span>
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-inner">
+                <div class="subject-tag">Dados</div>
+                <h2>Banco de Dados</h2>
+                <p>Modelagem relacional, SQL e normalização.</p>
+                <span class="learn-more">acessar <span class="arrow">→</span></span>
+            </div>
+        </a>
+    </main>
+
+    <!--
+      ============================================================
+      FOOTER
+      ============================================================
+    -->
+    <footer class="hub-footer">
+        <p>Feito por Aysllan · Gabrieli · Luiza <br>Hub Aula 2</p>
+    </footer>
+</body>
+
+</html>

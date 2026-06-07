@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Banco de Dados</title>
+</head>
+
+<body>
+    <section class="subject-page">
+        <a href="../index.html" class="back-link">← voltar ao hub</a>
+        <h1>Banco de Dados</h1>
+    </section>
+
+    <!--
+      ============================================================
+      BLOCO DE CÓDIGO — SQL
+      ============================================================
+      Mesma estrutura .code-block + .code-head + .code-body.
+      Para SQL usamos .tok-key para palavras-chave (SELECT, FROM)
+      e .tok-str / .tok-num pros valores.
+    -->
+    <section class="wrap">
+        <div class="code-block">
+            <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="filename">consulta.sql <span class="lang">SQL</span></span>
+            </div>
+            <div class="code-body">
+                <div class="line-numbers">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    <span>6</span><span>7</span><span>8</span>
+                </div>
+<pre><code><span class="tok-com">-- Lista os usuários ativos ordenados por nome</span>
+<span class="tok-key">SELECT</span> id, nome, email
+<span class="tok-key">FROM</span> usuarios
+<span class="tok-key">WHERE</span> ativo = <span class="tok-num">1</span>
+  <span class="tok-key">AND</span> criado_em &gt;= <span class="tok-str">'2024-01-01'</span>
+<span class="tok-key">ORDER BY</span> nome <span class="tok-key">ASC</span>
+<span class="tok-key">LIMIT</span> <span class="tok-num">10</span>;</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="hub-footer">
+        <p>Feito por Aysllan · Gabrieli · Luiza <br>Hub Aula 2</p>
+    </footer>
+</body>
+
+</html>

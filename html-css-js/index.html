@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>HTML, CSS e JavaScript</title>
+</head>
+
+<body>
+    <section class="subject-page">
+        <a href="../index.html" class="back-link">← voltar ao hub</a>
+        <h1>HTML, CSS e JavaScript</h1>
+    </section>
+
+    <!--
+      ============================================================
+      BLOCO DE CÓDIGO — JavaScript
+      ============================================================
+      Estrutura padrão de code-block. Para realçar a sintaxe,
+      envolva os trechos em spans com classes .tok-* (ver CSS).
+    -->
+    <section class="wrap">
+        <div class="code-block">
+            <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="filename">app.js <span class="lang">JavaScript</span></span>
+            </div>
+            <div class="code-body">
+                <div class="line-numbers">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    <span>6</span><span>7</span><span>8</span>
+                </div>
+<pre><code><span class="tok-com">// Pega o botão e mostra uma mensagem ao clicar</span>
+<span class="tok-key">const</span> botao = document.<span class="tok-fn">querySelector</span>(<span class="tok-str">'#meu-botao'</span>);
+<span class="tok-key">const</span> contagem = <span class="tok-num">0</span>;
+
+botao.<span class="tok-fn">addEventListener</span>(<span class="tok-str">'click'</span>, () =&gt; {
+    <span class="tok-key">const</span> nome = <span class="tok-str">'Mundo'</span>;
+    <span class="tok-fn">alert</span>(<span class="tok-str">`Olá, ${nome}!`</span>);
+});</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="hub-footer">
+        <p>Feito por Aysllan · Gabrieli · Luiza <br>Hub Aula 2</p>
+    </footer>
+</body>
+
+</html>
