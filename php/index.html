@@ -12,6 +12,17 @@
     <section class="subject-page">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>PHP</h1>
+        <p>PHP é uma linguagem de programação voltada para o desenvolvimento web, executada no servidor.<br>Uma das suas principais funções é a comunicação com bancos de dados, como o <strong>PostgreSQL</strong>.<br>Isso permite armazenar, buscar e manipular informações dinamicamente.</p>
+
+        <p>Para gerenciar o banco de dados visualmente, usamos o <strong>pgAdmin</strong>, que permite criar tabelas, visualizar registros e executar comandos SQL de forma gráfica.<br>Já a conexão entre o PHP e o PostgreSQL é feita através da variável <code>$conn</code>, que guarda as informações do banco.<br>Sempre envolva a conexão em um bloco <strong>try/catch</strong> para capturar erros sem expor dados sensíveis.</p>
+
+        <p>Para executar consultas no banco, usamos a variável <code>$varSQL</code> para guardar o comando SQL escrito.<br>Em seguida, o método <strong>prepare</strong> prepara esse comando antes de enviá-lo ao banco isso evita erros e aumenta a segurança.<br>Depois, o <strong>bindParam</strong> é usado para vincular os valores das variáveis PHP aos parâmetros do SQL, substituindo os <code>?</code> ou <code>:nome</code> pelos dados reais.<br>Por fim, o <strong>execute</strong> envia o comando ao banco, e o <strong>fetch</strong> recupera os resultados linha por linha.</p>
+        
+        <p>Com a conexão estabelecida pelo <code>$conn</code>, podemos aplicar o <strong>CRUD</strong>  as quatro operações fundamentais de qualquer sistema:<br><strong>Create</strong> (inserir), <strong>Read</strong> (buscar), <strong>Update</strong> (atualizar) e <strong>Delete</strong> (deletar) registros no banco.<br>Essas operações são organizadas em <strong>funções</strong>, deixando o código mais limpo, reutilizável e fácil de manter.</p>
+
+        <p>Dentro dessas funções, o fluxo padrão é: definir o SQL na <code>$varSQL</code>, usar o <strong>prepare</strong> para preparar o comando, o <strong>bindParam</strong> para passar os valores com segurança e o <strong>execute</strong> para executar.<br>Quando precisamos recuperar dados, o <strong>fetch</strong> ou <strong>fetchAll</strong> retorna os registros do banco para o PHP.<br>Esse fluxo protege o sistema contra ataques de <strong>SQL Injection</strong> e mantém o código organizado.</p>
+
+
     </section>
 
     <!--
