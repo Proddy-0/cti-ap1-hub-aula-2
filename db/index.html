@@ -4,67 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <title>Banco de Dados</title>
 </head>
 
 <body>
-    <section class="subject-page">
+    <section class="subject-page" style="--page-accent:#38bdf8">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>Banco de Dados</h1>
-    
-<p>
-O <strong>Banco de Dados</strong> é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente.
-<br><br>
-Antes de criar um banco de dados, é comum realizar sua modelagem utilizando o <strong>DER</strong> (Diagrama Entidade-Relacionamento).
-<br><br>
-O DER representa visualmente as entidades, seus atributos e os relacionamentos existentes entre elas.
-<br><br>
-Essa modelagem ajuda a planejar a estrutura do banco antes da implementação.
-</p>
 
-<p>
-No DER, as <strong>participações</strong> indicam se uma entidade é obrigada ou não a participar de um relacionamento.
-<br><br>
-A participação <strong>total</strong> significa que todas as instâncias da entidade devem estar associadas ao relacionamento.
-<br><br>
-Esse tipo de participação é representado por uma <strong>linha dupla</strong>.
-<br><br>
-Já a participação <strong>parcial</strong> indica que a associação é opcional.
-<br><br>
-Nesse caso, a representação é feita por uma <strong>linha simples</strong>.
-</p>
+        <p class="lead">
+            O <strong>Banco de Dados</strong> armazena, gerencia e recupera informações de forma eficiente. Antes de
+            criá-lo, fazemos a modelagem com o <strong>DER</strong> (Diagrama Entidade-Relacionamento), que representa
+            visualmente as entidades, seus atributos e os relacionamentos — planejando a estrutura antes da
+            implementação (veja o exemplo abaixo).
+        </p>
 
-<p>
-Outro conceito importante no DER é a <strong>especialização</strong>.
-<br><br>
-Ela ocorre quando uma entidade genérica é dividida em entidades mais específicas, chamadas de subtipos.
-<br><br>
-Essa técnica permite representar características particulares de cada categoria.
-</p>
+        <div class="topic">
+            <h2>Participação</h2>
+            <p>Indica se uma entidade é <strong>obrigada</strong> ou não a participar de um relacionamento.</p>
+            <ul class="bullets">
+                <li><strong>Total</strong> — todas as instâncias precisam estar associadas. Representada por <strong>linha dupla</strong>.</li>
+                <li><strong>Parcial</strong> — a associação é opcional. Representada por <strong>linha simples</strong>.</li>
+            </ul>
+        </div>
 
-<p>
-A especialização <strong>disjunta</strong> determina que uma instância pode pertencer a apenas um subtipo.
-<br><br>
-Por exemplo, uma pessoa pode ser <strong>física</strong> ou <strong>jurídica</strong>, mas não as duas ao mesmo tempo.
-<br><br>
-Já a especialização <strong>overlapping</strong> (sobreposta) permite que uma mesma instância pertença simultaneamente a mais de um subtipo.
-<br><br>
-Nesse caso, as características dos diferentes subtipos podem coexistir.
-</p>
+        <div class="topic">
+            <h2>Especialização</h2>
+            <p>Ocorre quando uma entidade genérica é dividida em entidades mais específicas (<strong>subtipos</strong>),
+                representando características particulares de cada categoria.</p>
+            <ul class="bullets">
+                <li><strong>Disjunta</strong> — uma instância pertence a <strong>apenas um</strong> subtipo (ex.: pessoa física <em>ou</em> jurídica).</li>
+                <li><strong>Overlapping</strong> (sobreposta) — uma instância pode pertencer a <strong>mais de um</strong> subtipo ao mesmo tempo.</li>
+            </ul>
+        </div>
 
-<p>
-Compreender os conceitos de participação total, participação parcial, especialização disjunta e especialização overlapping é fundamental para a modelagem de dados.
-<br><br>
-Essas definições representam regras do mundo real que precisam ser respeitadas pelo sistema.
-<br><br>
-Um DER bem elaborado reduz erros durante o desenvolvimento.
-<br><br>
-Além disso, facilita a implementação do banco de dados e torna a manutenção do sistema mais simples e organizada.
-</p>
+        <div class="topic">
+            <h2>Por que importa</h2>
+            <p class="note">📐 Um DER bem elaborado reduz erros no desenvolvimento, facilita a implementação e torna a
+                manutenção mais simples — pois traduz regras do mundo real que o sistema precisa respeitar.</p>
+        </div>
 
+    </section>
 
-
+    <!--
+      ============================================================
+      DIAGRAMA DER (SVG) — "aluno realiza trabalho"
+      ------------------------------------------------------------
+      Ilustra o relacionamento com cardinalidade 1,n nos dois
+      lados. As linhas "desenham" (stroke-dashoffset) e os nós
+      entram em cascata (--i). Tudo em CSS, classe .der no style.
+      ============================================================
+    -->
+    <section class="wrap">
+        <figure class="diagram diagram-db">
+            <img src="../img/der.png"
+                alt="Diagrama entidade-relacionamento: aluno realiza trabalho, com cardinalidade 1,n dos dois lados">
+            <figcaption>DER — <strong>aluno</strong> <em>realiza</em> <strong>trabalho</strong>. Cardinalidade
+                <strong>1,n</strong> dos dois lados (um aluno faz vários trabalhos e um trabalho pode ter vários
+                alunos). Atributo sublinhado = chave primária.</figcaption>
+        </figure>
     </section>
 
     <!--
@@ -76,25 +79,13 @@ Além disso, facilita a implementação do banco de dados e torna a manutenção
       e .tok-str / .tok-num pros valores.
     -->
     <section class="wrap">
-        <div class="code-block">
-            <div class="code-head">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <span class="filename">consulta.sql <span class="lang">SQL</span></span>
-            </div>
-            <div class="code-body">
-                <div class="line-numbers">
-                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                    <span>6</span><span>7</span><span>8</span>
-                </div>
-<pre><code><span class="tok-com">-- Lista os usuários ativos ordenados por nome</span>
-<span class="tok-key">SELECT</span> id, nome, email
-<span class="tok-key">FROM</span> usuarios
-<span class="tok-key">WHERE</span> ativo = <span class="tok-num">1</span>
-  <span class="tok-key">AND</span> criado_em &gt;= <span class="tok-str">'2024-01-01'</span>
-<span class="tok-key">ORDER BY</span> nome <span class="tok-key">ASC</span>
-<span class="tok-key">LIMIT</span> <span class="tok-num">10</span>;</code></pre>
-            </div>
-        </div>
+        <figure class="diagram">
+            <img src="../img/ex-sql.png"
+                alt="Exemplo SQL: CREATE TABLE aluno e as operações CRUD (INSERT, SELECT, UPDATE, DELETE)">
+            <figcaption>Do DER para o banco: <code>CREATE TABLE</code> da entidade <strong>aluno</strong> e o
+                <strong>CRUD</strong> em SQL — <strong>Create</strong> (INSERT), <strong>Read</strong> (SELECT),
+                <strong>Update</strong> (UPDATE) e <strong>Delete</strong> (DELETE).</figcaption>
+        </figure>
     </section>
 
     <footer class="hub-footer">

@@ -4,75 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <title>HTML, CSS e JavaScript</title>
 </head>
 
 <body>
-    <section class="subject-page">
+    <section class="subject-page" style="--page-accent:#f7df1e">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>HTML, CSS e JavaScript</h1>
-     
-<p>
-HTML, CSS e JavaScript são as três linguagens base do desenvolvimento web.
-<br><br>
-O <strong>HTML</strong> é responsável por estruturar o conteúdo da página.
-<br><br>
-O <strong>CSS</strong> define a aparência visual dos elementos.
-<br><br>
-Já o <strong>JavaScript</strong> adiciona interatividade e comportamento às páginas.
-</p>
 
-<p>
-No CSS, os <strong>layouts</strong> definem como os elementos são organizados na tela.
-<br><br>
-Os dois sistemas de layout mais utilizados são o <strong>Flexbox</strong> e o <strong>Grid</strong>.
-<br><br>
-O <strong>Flexbox</strong> é ideal para alinhar elementos em linha ou coluna de forma simples.
-<br><br>
-Já o <strong>Grid</strong> permite organizar elementos em linhas e colunas simultaneamente.
-<br><br>
-Com essas ferramentas, é possível criar páginas responsivas que se adaptam a diferentes tamanhos de tela.
-</p>
+        <p class="lead">
+            São as três linguagens base do desenvolvimento web. O <strong>HTML</strong> estrutura o conteúdo, o
+            <strong>CSS</strong> define a aparência e o <strong>JavaScript</strong> adiciona interatividade
+            (veja as camadas abaixo).
+        </p>
 
-<p>
-O CSS também permite criar <strong>animações básicas</strong>.
-<br><br>
-Uma das formas mais utilizadas é a propriedade <code>transition</code>, que suaviza mudanças de estilo ao interagir com um elemento.
-<br><br>
-Um exemplo comum é alterar a cor de um botão quando o usuário passa o mouse sobre ele.
-<br><br>
-Outra opção é utilizar o <code>@keyframes</code>, que permite criar animações mais completas.
-<br><br>
-Com ele, podemos definir diferentes etapas do movimento utilizando <strong>from</strong> e <strong>to</strong>, ou porcentagens como <code>0%</code>, <code>50%</code> e <code>100%</code>.
-</p>
+        <div class="topic">
+            <h2>Layout no CSS</h2>
+            <p>Os layouts definem como os elementos se organizam na tela. Os dois sistemas mais usados:</p>
+            <ul class="bullets">
+                <li><strong>Flexbox</strong> — alinha elementos em linha ou coluna, de forma simples.</li>
+                <li><strong>Grid</strong> — organiza em linhas e colunas ao mesmo tempo.</li>
+            </ul>
+            <p>Com eles criamos páginas <strong>responsivas</strong>, que se adaptam a diferentes tamanhos de tela.</p>
+        </div>
 
-<p>
-O <strong>JavaScript</strong> é executado diretamente pelo navegador.
-<br><br>
-Ele permite manipular elementos da página em tempo real.
-<br><br>
-O primeiro contato com JavaScript geralmente acontece pelo <strong>console do navegador</strong>.
-<br><br>
-Esse console pode ser acessado pressionando a tecla <code>F12</code>.
-<br><br>
-Nele é possível testar comandos, visualizar erros e utilizar o método <code>console.log()</code> para exibir mensagens e valores durante o desenvolvimento.
-</p>
+        <div class="topic">
+            <h2>Animações no CSS</h2>
+            <ul class="bullets">
+                <li><code>transition</code> — suaviza mudanças de estilo ao interagir (ex.: a cor de um botão no hover).</li>
+                <li><code>@keyframes</code> — animações mais completas, com etapas definidas por <strong>from</strong>/<strong>to</strong> ou <code>0%</code>, <code>50%</code>, <code>100%</code>.</li>
+            </ul>
+        </div>
 
-<p>
-Juntos, HTML, CSS e JavaScript formam a base de qualquer página web moderna.
-<br><br>
-O HTML organiza o conteúdo.
-<br><br>
-O CSS estiliza e cria animações.
-<br><br>
-O JavaScript torna a página dinâmica e interativa.
-<br><br>
-Além disso, o console do navegador é uma ferramenta essencial para testes e depuração.
-<br><br>
-Ele permite executar comandos rapidamente, identificar erros e compreender melhor o funcionamento do código antes de aplicá-lo definitivamente na página.
-</p>
+        <div class="topic">
+            <h2>JavaScript &amp; console</h2>
+            <ul class="bullets">
+                <li>Executado pelo navegador, manipula os elementos da página em tempo real.</li>
+                <li>O <strong>console</strong> (tecla <code>F12</code>) é o primeiro contato: testar comandos e ver erros.</li>
+                <li><code>console.log()</code> exibe mensagens e valores durante o desenvolvimento.</li>
+            </ul>
+            <p class="note">🧪 O console é essencial para testes e depuração — ajuda a entender o código antes de
+                aplicá-lo na página.</p>
+        </div>
 
+    </section>
+
+    <!--
+      ============================================================
+      CAMADAS (HTML/CSS/JS) + DEMO AO VIVO DE ANIMAÇÃO
+      ------------------------------------------------------------
+      .layers = as 3 camadas da web. .demo = exemplo real: o botão
+      usa transition (hover) e a bolinha usa @keyframes. Assim a
+      própria página demonstra o que o texto explica.
+      ============================================================
+    -->
+    <section class="wrap">
+        <figure class="diagram">
+            <img src="../img/layers.png"
+                alt="As três camadas da web: HTML (estrutura), CSS (estilo e animação) e JavaScript (interatividade)">
+            <figcaption>As três camadas da web: o <strong>HTML</strong> estrutura, o <strong>CSS</strong> estiliza e anima, e o <strong>JavaScript</strong> dá interatividade.</figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <div class="demo-row">
+                <button class="demo-btn" type="button">passe o mouse</button>
+                <span class="demo-shape" aria-hidden="true"></span>
+            </div>
+            <figcaption>Exemplo <strong>ao vivo</strong>: o botão usa <code>transition</code> (suaviza a cor no <em>hover</em>) e a bolinha usa <code>@keyframes</code> (animação contínua). Tudo só com CSS.</figcaption>
+        </figure>
     </section>
 
     <!--
@@ -83,26 +86,12 @@ Ele permite executar comandos rapidamente, identificar erros e compreender melho
       envolva os trechos em spans com classes .tok-* (ver CSS).
     -->
     <section class="wrap">
-        <div class="code-block">
-            <div class="code-head">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <span class="filename">app.js <span class="lang">JavaScript</span></span>
-            </div>
-            <div class="code-body">
-                <div class="line-numbers">
-                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                    <span>6</span><span>7</span><span>8</span>
-                </div>
-<pre><code><span class="tok-com">// Pega o botão e mostra uma mensagem ao clicar</span>
-<span class="tok-key">const</span> botao = document.<span class="tok-fn">querySelector</span>(<span class="tok-str">'#meu-botao'</span>);
-<span class="tok-key">const</span> contagem = <span class="tok-num">0</span>;
-
-botao.<span class="tok-fn">addEventListener</span>(<span class="tok-str">'click'</span>, () =&gt; {
-    <span class="tok-key">const</span> nome = <span class="tok-str">'Mundo'</span>;
-    <span class="tok-fn">alert</span>(<span class="tok-str">`Olá, ${nome}!`</span>);
-});</code></pre>
-            </div>
-        </div>
+        <figure class="diagram">
+            <img src="../img/ex-css.png"
+                alt="Exemplo CSS: transition suaviza no hover e @keyframes cria uma animação contínua">
+            <figcaption>Exemplo das duas formas de animar no CSS: <code>transition</code> (suaviza a mudança no
+                <em>hover</em>) e <code>@keyframes</code> (animação contínua, definindo as etapas).</figcaption>
+        </figure>
     </section>
 
     <footer class="hub-footer">

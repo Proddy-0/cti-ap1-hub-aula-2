@@ -4,72 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <title>PHP</title>
 </head>
 
 <body>
-    <section class="subject-page">
+    <section class="subject-page" style="--page-accent:#a5a8e0">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>PHP</h1>
-       
-<p>
-PHP é uma linguagem de programação voltada para o desenvolvimento web, executada no servidor.
-<br><br>
-Uma das suas principais funções é a comunicação com bancos de dados, como o <strong>PostgreSQL</strong>.
-<br><br>
-Isso permite armazenar, buscar e manipular informações dinamicamente.
-</p>
 
-<p>
-Para gerenciar o banco de dados visualmente, usamos o <strong>pgAdmin</strong>, que permite criar tabelas, visualizar registros e executar comandos SQL de forma gráfica.
-<br><br>
-Já a conexão entre o PHP e o PostgreSQL é feita através da variável <code>$conn</code>, que guarda as informações do banco.
-<br><br>
-Sempre envolva a conexão em um bloco <strong>try/catch</strong> para capturar erros sem expor dados sensíveis.
-</p>
+        <p class="lead">
+            PHP é uma linguagem de programação voltada para o <strong>desenvolvimento web</strong>, executada no
+            servidor. Uma de suas principais funções é a comunicação com bancos de dados — como o
+            <strong>PostgreSQL</strong> — permitindo armazenar, buscar e manipular informações dinamicamente.
+        </p>
 
-<p>
-Para executar consultas no banco, usamos a variável <code>$varSQL</code> para guardar o comando SQL escrito.
-<br><br>
-Em seguida, o método <strong>prepare</strong> prepara esse comando antes de enviá-lo ao banco; isso evita erros e aumenta a segurança.
-<br><br>
-Depois, o <strong>bindParam</strong> é usado para vincular os valores das variáveis PHP aos parâmetros do SQL, substituindo os <code>?</code> ou <code>:nome</code> pelos dados reais.
-<br><br>
-Por fim, o <strong>execute</strong> envia o comando ao banco, e o <strong>fetch</strong> recupera os resultados linha por linha.
-</p>
+        <div class="topic">
+            <h2>Conexão com o banco</h2>
+            <ul class="bullets">
+                <li>O <strong>pgAdmin</strong> gerencia o banco visualmente: criar tabelas, ver registros e executar SQL.</li>
+                <li>A conexão fica guardada na variável <code>$conn</code>.</li>
+                <li>Envolva sempre a conexão em um bloco <strong>try/catch</strong>, para capturar erros sem expor dados sensíveis.</li>
+            </ul>
+        </div>
 
-<p>
-Com a conexão estabelecida pelo <code>$conn</code>, podemos aplicar o <strong>CRUD</strong>, as quatro operações fundamentais de qualquer sistema:
-<br><br>
-<strong>Create</strong> (inserir),
-<br>
-<strong>Read</strong> (buscar),
-<br>
-<strong>Update</strong> (atualizar) e
-<br>
-<strong>Delete</strong> (deletar) registros no banco.
-<br><br>
-Essas operações são organizadas em <strong>funções</strong>, deixando o código mais limpo, reutilizável e fácil de manter.
-</p>
+        <div class="topic">
+            <h2>Executando consultas</h2>
+            <ol class="steps">
+                <li>Guardar o comando SQL em <code>$varSQL</code>.</li>
+                <li><strong>prepare</strong> — prepara o comando antes de enviar (evita erros e aumenta a segurança).</li>
+                <li><strong>bindParam</strong> — vincula os valores das variáveis aos parâmetros (<code>?</code> ou <code>:nome</code>).</li>
+                <li><strong>execute</strong> — envia o comando ao banco.</li>
+                <li><strong>fetch</strong> / <strong>fetchAll</strong> — recupera os resultados.</li>
+            </ol>
+        </div>
 
-<p>
-Dentro dessas funções, o fluxo padrão é:
-<br><br>
-1. Definir o SQL na <code>$varSQL</code>;
-<br><br>
-2. Usar o <strong>prepare</strong> para preparar o comando;
-<br><br>
-3. Utilizar o <strong>bindParam</strong> para passar os valores com segurança;
-<br><br>
-4. Executar com <strong>execute</strong>.
-<br><br>
-Quando precisamos recuperar dados, o <strong>fetch</strong> ou <strong>fetchAll</strong> retorna os registros do banco para o PHP.
-<br><br>
-Esse fluxo protege o sistema contra ataques de <strong>SQL Injection</strong> e mantém o código organizado.
-</p>
+        <div class="topic">
+            <h2>CRUD &amp; organização</h2>
+            <p>Com a conexão ativa, aplicamos o <strong>CRUD</strong> — as quatro operações fundamentais de qualquer
+                sistema (veja o diagrama abaixo). Elas ficam organizadas em <strong>funções</strong>, deixando o código
+                limpo, reutilizável e fácil de manter.</p>
+            <p class="note">🔒 Usar <strong>prepare</strong> + <strong>bindParam</strong> protege o sistema contra
+                ataques de <strong>SQL Injection</strong>.</p>
+        </div>
 
+    </section>
 
+    <!--
+      ============================================================
+      DIAGRAMA: fluxo PDO (PHP -> PDO -> PostgreSQL) + CRUD
+      ------------------------------------------------------------
+      Feito com HTML/CSS (.flow e .crud-strip). Entram em cascata
+      (--i) e têm hover. Classes definidas no style.css.
+      ============================================================
+    -->
+    <section class="wrap">
+        <figure class="diagram">
+            <img src="../img/php.png"
+                alt="Fluxo PHP → PDO (PDO_PGSQL) → PostgreSQL">
+            <figcaption>O PHP conversa com o banco através do <strong>PDO</strong> (driver <code>PDO_PGSQL</code> para
+                PostgreSQL). A conexão fica em <code>$conn</code> e o fluxo é <code>prepare</code> →
+                <code>bindParam</code> → <code>execute</code> → <code>fetch</code>.</figcaption>
+        </figure>
+
+        <!-- CRUD: cards animados (entram em cascata via --i; hover eleva). -->
+        <div class="crud-strip">
+            <div class="crud-item" style="--i:0"><span class="crud-letter">C</span><b>Create</b><small>INSERT</small></div>
+            <div class="crud-item" style="--i:1"><span class="crud-letter">R</span><b>Read</b><small>SELECT</small></div>
+            <div class="crud-item" style="--i:2"><span class="crud-letter">U</span><b>Update</b><small>UPDATE</small></div>
+            <div class="crud-item" style="--i:3"><span class="crud-letter">D</span><b>Delete</b><small>DELETE</small></div>
+        </div>
     </section>
 
     <!--
@@ -81,27 +88,13 @@ Esse fluxo protege o sistema contra ataques de <strong>SQL Injection</strong> e 
       .tok-str / .tok-num / .tok-com (definidos no CSS).
     -->
     <section class="wrap">
-        <div class="code-block">
-            <div class="code-head">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <span class="filename">index.php <span class="lang">PHP</span></span>
-            </div>
-            <div class="code-body">
-                <div class="line-numbers">
-                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                    <span>6</span><span>7</span><span>8</span>
-                </div>
-<pre><code><span class="tok-key">&lt;?php</span>
-<span class="tok-com">// Saudação simples em PHP</span>
-<span class="tok-key">$nome</span> = <span class="tok-str">"Mundo"</span>;
-
-<span class="tok-key">function</span> <span class="tok-fn">saudacao</span>(<span class="tok-key">$n</span>) {
-    <span class="tok-key">return</span> <span class="tok-str">"Olá, $n!"</span>;
-}
-
-<span class="tok-fn">echo</span> <span class="tok-fn">saudacao</span>(<span class="tok-key">$nome</span>);</code></pre>
-            </div>
-        </div>
+        <figure class="diagram">
+            <img src="../img/ex-php.png"
+                alt="Exemplo em PHP: conexão PDO com PostgreSQL dentro de try/catch, INSERT (Create) com prepare/bindParam e SELECT (Read) com fetchAll">
+            <figcaption>Exemplo com <strong>PDO</strong>: conexão em <code>try/catch</code>, <strong>Create</strong>
+                (INSERT) usando <code>prepare</code> + <code>bindParam</code> e <strong>Read</strong> (SELECT) com
+                <code>fetchAll</code> — protegido contra SQL Injection.</figcaption>
+        </figure>
     </section>
 
     <footer class="hub-footer">

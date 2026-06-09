@@ -9,66 +9,73 @@
 </head>
 
 <body>
-    <section class="subject-page">
+    <section class="subject-page" style="--page-accent:#f87171">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>Java</h1>
-       
-<p>
-Java é uma linguagem de programação orientada a objetos, amplamente usada no desenvolvimento de sistemas, aplicativos e back-end web.
-<br><br>
-É uma linguagem fortemente tipada, ou seja, todo dado precisa ter seu tipo definido, como <strong>int</strong>, <strong>String</strong> ou <strong>double</strong>, antes de ser utilizado.
-</p>
 
-<p>
-Um dos recursos mais importantes do Java é o <strong>try-catch</strong>, utilizado para tratamento de erros.
-<br><br>
-O bloco <strong>try</strong> contém o código que pode gerar uma exceção.
-<br><br>
-Já o bloco <strong>catch</strong> captura esse erro e define o que deve acontecer quando ele ocorrer.
-<br><br>
-Isso evita que o programa seja encerrado inesperadamente e permite exibir mensagens mais claras para o usuário.
-</p>
+        <p class="lead">
+            Java é uma linguagem <strong>orientada a objetos</strong>, usada em sistemas, aplicativos e back-end web. É
+            <strong>fortemente tipada</strong>: todo dado precisa ter seu tipo definido (<strong>int</strong>,
+            <strong>String</strong>, <strong>double</strong>) antes de ser usado.
+        </p>
 
-<p>
-Para trabalhar com <strong>números aleatórios</strong>, o Java oferece a biblioteca <code>java.util.Random</code>.
-<br><br>
-Com ela, criamos um objeto da classe <strong>Random</strong> para gerar valores aleatórios.
-<br><br>
-Alguns métodos bastante utilizados são:
-<br><br>
-<code>nextInt()</code> para números inteiros,
-<br>
-<code>nextDouble()</code> para números decimais e
-<br>
-<code>nextBoolean()</code> para valores verdadeiro ou falso.
-<br><br>
-Essa biblioteca é muito utilizada em jogos, sorteios e simulações.
-</p>
+        <div class="topic">
+            <h2>Tratamento de erros — try-catch</h2>
+            <ul class="bullets">
+                <li><strong>try</strong> — contém o código que pode gerar uma exceção.</li>
+                <li><strong>catch</strong> — captura o erro e define o que fazer quando ele ocorre.</li>
+                <li>Evita que o programa seja encerrado inesperadamente e permite mensagens mais claras ao usuário.</li>
+            </ul>
+        </div>
 
-<p>
-Os <strong>arrays</strong> são estruturas de dados que armazenam vários valores do mesmo tipo em uma única variável.
-<br><br>
-Em Java, o tamanho do array é definido no momento da criação e não pode ser alterado posteriormente.
-<br><br>
-Cada elemento é acessado por meio de um índice.
-<br><br>
-Os índices sempre começam em <strong>0</strong>.
-</p>
+        <div class="topic">
+            <h2>Números aleatórios — Random</h2>
+            <p>A biblioteca <code>java.util.Random</code> gera valores aleatórios a partir de um objeto da classe
+                <strong>Random</strong>. Métodos mais usados:</p>
+            <ul class="bullets">
+                <li><code>nextInt()</code> — números inteiros.</li>
+                <li><code>nextDouble()</code> — números decimais.</li>
+                <li><code>nextBoolean()</code> — verdadeiro ou falso.</li>
+            </ul>
+            <p>Muito utilizada em jogos, sorteios e simulações.</p>
+        </div>
 
-<p>
-Combinando <strong>arrays</strong>, <strong>Random</strong> e <strong>try-catch</strong>, podemos desenvolver programas mais robustos e dinâmicos.
-<br><br>
-Por exemplo, é possível preencher um array com números aleatórios utilizando a classe <strong>Random</strong>.
-<br><br>
-Ao acessar posições do array, o bloco <strong>try-catch</strong> pode ser utilizado para evitar falhas causadas por índices inválidos.
-<br><br>
-Quando tentamos acessar uma posição fora dos limites do array, ocorre a exceção <strong>ArrayIndexOutOfBoundsException</strong>.
-<br><br>
-Tratar esse tipo de erro corretamente é uma das boas práticas fundamentais da programação em Java.
-</p>
+        <div class="topic">
+            <h2>Arrays</h2>
+            <ul class="bullets">
+                <li>Armazenam vários valores do <strong>mesmo tipo</strong> em uma única variável.</li>
+                <li>O tamanho é definido na criação e <strong>não pode ser alterado</strong> depois.</li>
+                <li>Cada elemento é acessado por um índice — que sempre começa em <strong>0</strong>.</li>
+            </ul>
+            <p class="note">⚠️ Acessar uma posição fora dos limites dispara
+                <strong>ArrayIndexOutOfBoundsException</strong>. Combinar <strong>arrays + Random + try-catch</strong>
+                deixa o programa mais robusto (veja o exemplo abaixo).</p>
+        </div>
 
+    </section>
 
-
+    <!--
+      ============================================================
+      VISUALIZAÇÃO DE ARRAY (HTML/CSS)
+      ------------------------------------------------------------
+      Mostra int[] vet = new int[5] (índices 0..4) preenchido com
+      Random, e a célula vermelha do índice 5 (fora dos limites)
+      que dispara ArrayIndexOutOfBoundsException. Células entram
+      em cascata (--i). Classe .array-viz no style.css.
+      ============================================================
+    -->
+    <section class="wrap">
+        <figure class="diagram">
+            <div class="array-viz">
+                <div class="array-cell" style="--i:0"><span class="idx">0</span><span class="val">42</span></div>
+                <div class="array-cell" style="--i:1"><span class="idx">1</span><span class="val">7</span></div>
+                <div class="array-cell" style="--i:2"><span class="idx">2</span><span class="val">88</span></div>
+                <div class="array-cell" style="--i:3"><span class="idx">3</span><span class="val">15</span></div>
+                <div class="array-cell" style="--i:4"><span class="idx">4</span><span class="val">63</span></div>
+                <div class="array-cell oob" style="--i:5"><span class="idx">5</span><span class="val">✕</span></div>
+            </div>
+            <figcaption><code>int[] vet = new int[5]</code> preenchido com <strong>Random</strong> — índices de <strong>0 a 4</strong>. Acessar <code>vet[5]</code> está fora dos limites e dispara <strong>ArrayIndexOutOfBoundsException</strong> (use <em>try-catch</em>).</figcaption>
+        </figure>
     </section>
 
     <!--
@@ -82,25 +89,12 @@ Tratar esse tipo de erro corretamente é uma das boas práticas fundamentais da 
       ajuste se mudar a quantidade de linhas do código.
     -->
     <section class="wrap">
-        <div class="code-block">
-            <div class="code-head">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <span class="filename">Main.java <span class="lang">Java</span></span>
-            </div>
-            <div class="code-body">
-                <div class="line-numbers">
-                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                    <span>6</span><span>7</span>
-                </div>
-<pre><code><span class="tok-com">// Classe principal — ponto de entrada do programa</span>
-<span class="tok-key">public class</span> <span class="tok-fn">Main</span> {
-    <span class="tok-key">public static void</span> <span class="tok-fn">main</span>(<span class="tok-key">String</span>[] args) {
-        <span class="tok-key">String</span> nome = <span class="tok-str">"Mundo"</span>;
-        System.out.<span class="tok-fn">println</span>(<span class="tok-str">"Olá, "</span> + nome + <span class="tok-str">"!"</span>);
-    }
-}</code></pre>
-            </div>
-        </div>
+        <figure class="diagram">
+            <img src="../img/ex-java.png"
+                alt="Exemplo em Java: preenche um array com Random e usa try-catch para tratar ArrayIndexOutOfBoundsException">
+            <figcaption>Exemplo combinando <strong>array</strong>, <strong>Random</strong> e <strong>try-catch</strong>:
+                preenche o vetor com números aleatórios e trata o acesso a um índice fora dos limites.</figcaption>
+        </figure>
     </section>
 
     <footer class="hub-footer">
