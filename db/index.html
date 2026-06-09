@@ -12,14 +12,57 @@
     <section class="subject-page">
         <a href="../index.html" class="back-link">← voltar ao hub</a>
         <h1>Banco de Dados</h1>
-        
-        <p>O <strong>Banco de Dados</strong> é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente.<br>Para projetar um banco de dados antes de criá-lo, usamos o <strong>DER</strong>  Diagrama Entidade-Relacionamento.<br>Ele representa visualmente as entidades, seus atributos e como elas se relacionam entre si.</p>
+    
+<p>
+O <strong>Banco de Dados</strong> é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente.
+<br><br>
+Antes de criar um banco de dados, é comum realizar sua modelagem utilizando o <strong>DER</strong> (Diagrama Entidade-Relacionamento).
+<br><br>
+O DER representa visualmente as entidades, seus atributos e os relacionamentos existentes entre elas.
+<br><br>
+Essa modelagem ajuda a planejar a estrutura do banco antes da implementação.
+</p>
 
-        <p>No DER, as <strong>participações</strong> definem se uma entidade é obrigada ou não a participar de um relacionamento.<br>A participação <strong>total</strong> significa que toda instância da entidade precisa estar associada ao relacionamento  representada por linha dupla.<br>Já a participação <strong>parcial</strong> significa que a associação é opcional  representada por linha simples.</p>
+<p>
+No DER, as <strong>participações</strong> indicam se uma entidade é obrigada ou não a participar de um relacionamento.
+<br><br>
+A participação <strong>total</strong> significa que todas as instâncias da entidade devem estar associadas ao relacionamento.
+<br><br>
+Esse tipo de participação é representado por uma <strong>linha dupla</strong>.
+<br><br>
+Já a participação <strong>parcial</strong> indica que a associação é opcional.
+<br><br>
+Nesse caso, a representação é feita por uma <strong>linha simples</strong>.
+</p>
 
-        <p>O DER também permite representar <strong>especializações</strong>, que é quando uma entidade se divide em subtipos mais específicos.<br>A especialização <strong>disjunta</strong> indica que uma instância só pode pertencer a um subtipo por vez  por exemplo, uma pessoa só pode ser física <strong>ou</strong> jurídica.<br>Já a especialização <strong>overlapping</strong> (sobreposição) permite que uma instância pertença a mais de um subtipo ao mesmo tempo.</p>
-        
-        <p>Entender a participação total, parcial, disjunta e overlapping é essencial para modelar um banco de dados corretamente.<br>Essas definições feitas no DER refletem diretamente as regras do mundo real que o sistema precisa respeitar.<br>Um DER bem construído evita erros na estrutura do banco e facilita toda a etapa de implementação.</p>
+<p>
+Outro conceito importante no DER é a <strong>especialização</strong>.
+<br><br>
+Ela ocorre quando uma entidade genérica é dividida em entidades mais específicas, chamadas de subtipos.
+<br><br>
+Essa técnica permite representar características particulares de cada categoria.
+</p>
+
+<p>
+A especialização <strong>disjunta</strong> determina que uma instância pode pertencer a apenas um subtipo.
+<br><br>
+Por exemplo, uma pessoa pode ser <strong>física</strong> ou <strong>jurídica</strong>, mas não as duas ao mesmo tempo.
+<br><br>
+Já a especialização <strong>overlapping</strong> (sobreposta) permite que uma mesma instância pertença simultaneamente a mais de um subtipo.
+<br><br>
+Nesse caso, as características dos diferentes subtipos podem coexistir.
+</p>
+
+<p>
+Compreender os conceitos de participação total, participação parcial, especialização disjunta e especialização overlapping é fundamental para a modelagem de dados.
+<br><br>
+Essas definições representam regras do mundo real que precisam ser respeitadas pelo sistema.
+<br><br>
+Um DER bem elaborado reduz erros durante o desenvolvimento.
+<br><br>
+Além disso, facilita a implementação do banco de dados e torna a manutenção do sistema mais simples e organizada.
+</p>
+
 
 
     </section>
