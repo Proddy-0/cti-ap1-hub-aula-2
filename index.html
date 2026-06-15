@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -7,40 +7,20 @@
     <link rel="stylesheet" href="style.css">
     <title>Hub Aula 2</title>
 </head>
-<!--
-  ============================================================
-  CLASSE "hub" no <body>
-  ============================================================
-  Marca esta página como o hub. As animações de fundo (mesh
-  com blobs) e os efeitos extras nos cards só são aplicados
-  quando o body tem .hub — assim as subpáginas não herdam
-  esses efeitos pesados.
--->
-<body class="hub">
 
-    <!--
-      ============================================================
-      FUNDO ANIMADO (BG MESH)
-      ============================================================
-      Três círculos coloridos e desfocados (.mesh-blob) flutuam
-      atrás de todo o conteúdo. Animação "drift" no CSS — cada
-      blob tem um animation-delay diferente pros movimentos
-      não ficarem sincronizados.
-    -->
-    <div class="bg-mesh" aria-hidden="true">
+<body class="hub"> 
+<!--os efeitos visuais que pesam mais só vão rodar na pág. hub (navegação suave) -->
+
+    <!-- acessibilidade pro leitor da tela ignorar essa parte decorativa -->
+    <div class="bg-mesh" aria-hidden="true"> 
+    <!-- fundo moderno, três círculos, que ficam se movendo de forma suave e sem sincronia no fundo da tela -->
         <span class="mesh-blob mesh-blob-1"></span>
         <span class="mesh-blob mesh-blob-2"></span>
-        <span class="mesh-blob mesh-blob-3"></span>
+        <span class="mesh-blob mesh-blob-3"></span> 
     </div>
 
-    <!--
-      ============================================================
-      HEADER
-      ============================================================
-      .hub-header usa "fadeInDown" (entra de cima).
-      O símbolo { } usa "pulse" (cresce e diminui).
-      O <h1> tem uma barra animada abaixo (::after) com "shimmer".
-    -->
+    <!-- logotipo simples (< / >) animação para ele surgir deslizando de 
+    cima para baixo e fazer o ícone pulsar -->
     <header class="hub-header">
         <div class="logo">
             <span class="icon">< / ></span>
@@ -49,27 +29,24 @@
     </header>
 
     <!--
-      ============================================================
-      GRID DE CARDS
-      ============================================================
-      Cada card usa a animação "cardIn" (sobe e aparece).
+      
+      Cada card usa a animação "cardIn" (sobe e aparece)
+
       O atributo  style="--i: N"  vira a variável CSS --i,
       que controla o delay: cada card entra um pouquinho
-      depois do anterior (efeito cascata / stagger).
+      depois do anterior (efeito cascata)
 
-      Hover:
-        - O card sobe (transform: translateY).
-        - .card-border (borda em gradiente cônico) começa a girar.
-        - .card-shine passa um "brilho" diagonal por cima.
-        - A seta no .learn-more desliza pra direita.
-      Tudo via :hover, sem JS.
+      class="card-border" e class="card-shine" usados para efeitos visuais, 
+      borda colorida e um brilho diagonal cortando o card.
+
     -->
     <main class="hub-grid force-2x2">
+        <!-- 4 cards cada um referente a uma matéria -->
         <a href="java/index.html" class="subject-card" data-subject="java" style="--i:0">
             <span class="card-border" aria-hidden="true"></span>
             <span class="card-shine" aria-hidden="true"></span>
             <div class="card-inner">
-                <div class="subject-tag">Backend</div>
+                <div class="subject-tag">Backend</div> 
                 <h2>Java</h2>
                 <p>Início à orientação a objetos, try-catch e números aleatórios.</p>
                 <span class="learn-more">acessar <span class="arrow">→</span></span>
@@ -110,11 +87,6 @@
         </a>
     </main>
 
-    <!--
-      ============================================================
-      FOOTER
-      ============================================================
-    -->
     <footer class="hub-footer">
         <p>Feito por <b>Aysllan · Gabrieli · Luiza</b></p>
     </footer>

@@ -45,20 +45,23 @@
 
         <div class="topic">
             <h2>Por que importa</h2>
-            <p class="note">📐 Um DER bem elaborado reduz erros no desenvolvimento, facilita a implementação e torna a
+            <p class="note"> Um DER bem elaborado reduz erros no desenvolvimento, facilita a implementação e torna a
                 manutenção mais simples — pois traduz regras do mundo real que o sistema precisa respeitar.</p>
         </div>
 
     </section>
 
     <!--
-      ============================================================
-      DIAGRAMA DER (SVG) — "aluno realiza trabalho"
-      ------------------------------------------------------------
-      Ilustra o relacionamento com cardinalidade 1,n nos dois
-      lados. As linhas "desenham" (stroke-dashoffset) e os nós
-      entram em cascata (--i). Tudo em CSS, classe .der no style.
-      ============================================================
+      DIAGRAMA DER (SVG) — aluno realiza trabalho
+  
+        Mostra o relacionamento entre as duas entidades
+        com cardinalidade 1,n em cada lado.
+
+        Dois efeitos de animação acontecem ao carregar:
+        - As linhas "se desenham" do zero (stroke-dashoffset)
+        - Os nós aparecem em cascata, um após o outro (--i)
+
+        Os estilos ficam na classe .der, lá no CSS.
     -->
     <section class="wrap">
         <figure class="diagram diagram-db">
@@ -71,12 +74,17 @@
     </section>
 
     <!--
-      ============================================================
       BLOCO DE CÓDIGO — SQL
-      ============================================================
-      Mesma estrutura .code-block + .code-head + .code-body.
-      Para SQL usamos .tok-key para palavras-chave (SELECT, FROM)
-      e .tok-str / .tok-num pros valores.
+   
+        Mesma estrutura dos outros blocos de código do projeto:
+            code-block - container geral
+            code-head  - barra do topo com nome do arquivo
+            code-body  - área onde o código aparece
+
+        Para colorir o SQL usamos duas classes:
+            tok-key - palavras-chave (SELECT, FROM, WHERE...)
+            tok-str - textos entre aspas
+            tok-num - valores numericos 
     -->
     <section class="wrap">
         <figure class="diagram">

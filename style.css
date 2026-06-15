@@ -1,56 +1,36 @@
-/* ████████████████████████████████████████████████████████████
-   HUB AULA 2 — folha de estilo  ·  Aysllan · Gabrieli · Luiza
-   ████████████████████████████████████████████████████████████
-
-   ÍNDICE (use Ctrl+F com o nome da seção):
-     1. VARIÁVEIS GLOBAIS         — cores, fontes e atalhos (:root)
-     2. RESET / BODY              — base da página
-     3. FUNDO ANIMADO (BG MESH)   — blobs desfocados que flutuam
-     4. HEADER                    — título do hub
-     5. GRID + CARDS              — os 4 cards das matérias
-     6. PÁGINAS DAS MATÉRIAS      — layout das subpáginas
-     7. BLOCO DE CÓDIGO           — "janela" de código com cores
-     8. FOOTER
-     9. ESTRUTURA DE TEXTO        — .lead, .topic, listas, .note
-    10. ILUSTRAÇÕES / DIAGRAMAS   — figuras (img) + animações
-    11. RESPONSIVO                — media queries + acessibilidade
-
-   ╔══════════════════════════════════════════════════════════╗
-   ║  PONTOS PARA A APRESENTAÇÃO                                ║
-   ╠══════════════════════════════════════════════════════════╣
-   ║  CSS                                                      ║
-   ║  1) VARIÁVEIS (custom properties): cores e fontes ficam   ║
-   ║     em :root e são reusadas com var(--nome). Cada matéria ║
-   ║     tem um --accent próprio (data-subject="java|php...").  ║
-   ║                                                            ║
-   ║  2) ANIMAÇÕES com @keyframes + EFEITO CASCATA (stagger):   ║
-   ║     animation-delay: calc(var(--i) * 120ms) faz cada card ║
-   ║     entrar um após o outro. O --i vem do HTML (style=--i). ║
-   ║                                                            ║
-   ║  3) RESPONSIVO mobile-first: clamp() dá tamanhos fluidos,  ║
-   ║     e Grid/Flexbox + @media reorganizam por tela.          ║
-   ║                                                            ║
-   ║  4) EFEITOS AVANÇADOS: glassmorphism (backdrop-filter:     ║
-   ║     blur), borda em conic-gradient girando (@property      ║
-   ║     --angle) e prefers-reduced-motion (acessibilidade).    ║
-   ║                                                            ║
-   ║  HTML                                                      ║
-   ║  1) ESTRUTURA SEMÂNTICA: <header>, <section>, <footer>,    ║
-   ║     <figure>/<figcaption>. A classe .hub no <body> liga    ║
-   ║     os efeitos pesados só na home (subpáginas não herdam). ║
-   ║                                                            ║
-   ║  2) IMAGENS + ACESSIBILIDADE: ilustrações em <img> com     ║
-   ║     alt descritivo; elementos decorativos com aria-hidden. ║
-   ╚══════════════════════════════════════════════════════════╝
+/* 
+     1) VARIÁVEIS: em vez de repetir a mesma cor 20 vezes,  
+        a gente salva ela em :root e usa var(--nome)       
+        Cada matéria tem sua cor própria via data-subject  
+                                                             
+     2) ANIMAÇÕES EM CASCATA: os cards não entram todos      
+        juntos — cada um espera um pouquinho a mais com      
+        animation-delay O número --i no HTML define a vez   
+        de cada card entrar.                                 
+                                                            
+     3) RESPONSIVO: o layout começa pensado pro celular e    
+        vai crescendo clamp() ajusta tamanhos sozinho,     
+       sem precisar de media query pra cada detalhe        
+                                                             
+     4) EFEITOS ESPECIAIS: vidro fosco (backdrop-filter),    
+        borda colorida girando (conic-gradient + @property), 
+        e respeito a quem prefere menos movimento na tela  
+                                                            
+      HTML                                                    
+     1) TAGS CERTAS: <header>, <section>, <footer>,          
+        <figure>. A classe .hub no <body> liga os efeitos    
+        pesados só na página inicial.                        
+                                                             
+     2) ACESSIBILIDADE: toda imagem tem alt de verdade.      
+        Elementos só decorativos têm aria-hidden pra não     
+       atrapalhar leitores de tela.                     
 */
 
-/* ============================================================
-   1. VARIÁVEIS GLOBAIS
-   ------------------------------------------------------------
-   :root é o elemento raiz (o <html>). Definimos variáveis CSS
-   (custom properties) aqui para reusar valores em todo o
-   arquivo com  var(--nome).
-   ============================================================ */
+/* 
+    VARIÁVEIS GLOBAIS
+    Aqui ficam os valores que se repetem pelo CSS todo
+    Mudar uma cor aqui reflete em todo o projeto de uma vez
+*/
 :root {
     --bg-color: #020617;
     --card-bg: rgba(30, 41, 59, 0.45);
@@ -63,13 +43,17 @@
     --accent-web: #f7df1e;
     --accent-db: #38bdf8;
 
-    /* Atalho para um "transition" suave reutilizado em vários
-       hovers. Formato: <propriedade> <duração> <easing>. */
+    /* 
+        Transition padrão do projeto — reutilizado em todos os hovers
+        Formato: o que anima / quanto tempo / a curva de suavidade
+    */
     --transition-smooth: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-/* Reset básico: zera margem, padding e usa box-sizing border-box
-   (largura inclui borda e padding — bem mais fácil de calcular). */
+/* 
+    Zera margem e padding de tudo, e faz a borda entrar
+    dentro da largura declarada (bem mais fácil de calcular).
+*/
 * {
     margin: 0;
     padding: 0;
@@ -85,40 +69,43 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     min-height: 100vh;
-    min-height: 100dvh;           /* dvh = altura real do viewport em mobile (sem bug da barra) */
+    min-height: 100dvh;           /* dvh = altura real no celular, sem a barra do browser engolir espaço */
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-/* ============================================================
-   FUNDO ANIMADO — BG MESH (só no .hub, ver classe no <body>)
-   ------------------------------------------------------------
-   Camada fixa atrás de tudo com 3 círculos coloridos e
-   desfocados. Cada um anima posição e escala com tempos
-   diferentes — passa a impressão de "respiração" do fundo.
-   ============================================================ */
+/* 
+    FUNDO ANIMADO (só aparece na home, onde o body tem .hub)
+
+     Três manchas coloridas e desfocadas que ficam se mexendo
+     devagar em loop. Cada mancha começa num ponto diferente
+     do ciclo pra não ficarem sincronizadas.
+
+*/
 .bg-mesh {
     position: fixed;              /* não rola junto com a página */
-    inset: 0;                     /* atalho pra top/right/bottom/left: 0 */
+    inset: 0;                     /* ocupa a tela toda */
     z-index: -1;                  /* fica atrás do conteúdo */
     overflow: hidden;
-    pointer-events: none;         /* não bloqueia cliques */
+    pointer-events: none;         /* não bloqueia cliques , não atrapalha a navegação */
 }
 
 .mesh-blob {
     position: absolute;
-    width: 55vmax;                /* vmax = % da maior dimensão do viewport */
+    width: 55vmax;                /* tamanho relativo à maior dimensão da tela */
     height: 55vmax;
     border-radius: 50%;
     filter: blur(120px);          /* desfoque pesado = mancha colorida */
     opacity: 0.35;
     mix-blend-mode: screen;       /* mistura cores em vez de cobrir */
 
-    /* ANIMAÇÃO "drift": cada blob se move em loop infinito.
-       Cada filho recebe um animation-delay NEGATIVO diferente
-       para começar em fases distintas do ciclo. */
+    /* 
+        Cada mancha tem um delay negativo diferente.
+       Isso faz cada uma começar em um momento distinto
+       da animação — movimento descoordnado de propósito
+    */
     animation: drift 22s ease-in-out infinite;
 }
 
@@ -132,14 +119,14 @@ body {
     66%      { transform: translate(-7vmax, 8vmax) scale(0.92); }
 }
 
-/* ============================================================
-   HEADER (usado no HTML em <header class="hub-header">)
-   ------------------------------------------------------------
-   - .hub-header inteiro entra de cima ("fadeInDown").
-   - .icon ({ }) fica pulsando ("pulse").
-   - O <h1> tem uma barrinha embaixo via ::after que recebe
-     gradiente em movimento ("shimmer-line").
-   ============================================================ */
+/* 
+    HEADER
+   
+   - O header todo desce de cima quando a pagina abre.
+   - O icone { } fica pulsando sem parar.
+   - O título tem uma barrinha embaixo com luz passando.
+
+*/
 .hub-header {
     text-align: center;
     padding: clamp(40px, 8vw, 80px) 20px 30px;   /* padding fluido por tamanho de tela */
@@ -157,10 +144,10 @@ body {
     align-items: center;
     gap: clamp(10px, 2vw, 18px);
     margin-bottom: 12px;
-    flex-wrap: wrap;              /* em telas estreitas, quebra em duas linhas */
+    flex-wrap: wrap;              /* em telas pequena, quebra em duas linhas pra não ficar espremido */
 }
 
-/* Ícone { } com pulse contínuo + glow azul. */
+/* Ícone { } pulsa com brilho azul ao redor */
 .hub-header .icon {
     font-family: 'JetBrains Mono', monospace;
     font-size: clamp(1.4rem, 4vw, 2.2rem);
@@ -174,7 +161,7 @@ body {
     50%      { opacity: 1;   transform: scale(1.08); }
 }
 
-/* Título com gradiente texto + barrinha animada embaixo. */
+/* Título com cor em gradiente e barinha animada embaixo */
 .hub-header h1 {
     position: relative;
     font-size: clamp(1.8rem, 6vw, 3.4rem);
@@ -187,43 +174,48 @@ body {
     padding-bottom: 8px;
 }
 
-/* O gradiente acima é largo (200%) e a posição corre de 0%
-   pra 100% — efeito de "luz passando". */
+/* 
+    O gradiente da barra tem o dobro da largura do elemento.
+   Animando a posição de 0 a 100%, a luz parece deslizar
+*/
 @keyframes shimmer-line {
     from { background-position: 0% 0%; }
     to   { background-position: 200% 0%; }
 }
 
-/* ============================================================
-   GRID DE CARDS
-   ------------------------------------------------------------
-   Mobile-first: por padrão 1 coluna. A regra .force-2x2 só
-   força 2 colunas em telas >= 700px (no media query abaixo).
-   ============================================================ */
+/* 
+    GRID DE CARDS
+   
+   Começa em 1 coluna no celular. A classe .force-2x2
+   vira 2 colunas só em telas maiores (ver media query abaixo).
+*/
 .hub-grid {
     max-width: 1100px;
     margin: clamp(20px, 4vw, 40px) auto clamp(40px, 6vw, 60px);
     padding: 0 clamp(16px, 4vw, 24px);
     display: grid;
-    grid-template-columns: 1fr;                  /* mobile: 1 coluna */
+    grid-template-columns: 1fr;                  /* celular: 1 coluna */
     gap: clamp(16px, 3vw, 28px);
     width: 100%;
 }
 
-/* ============================================================
-   CARDS DAS MATÉRIAS (.subject-card)
-   ------------------------------------------------------------
-   ANIMAÇÃO DE ENTRADA "cardIn" + STAGGER (cascata):
-   - Cada card começa invisível e deslocado pra baixo.
-   - "forwards" = mantém o estado final depois que termina.
-   - O delay é  calc(var(--i) * 120ms + 200ms) — --i vem do
-     style="--i:N" no HTML.
+/* 
+    CARDS DAS MATÉRIAS
+   
+    Cada card começa invisivel e um pouco abaixo da posição
+    final. Quando a animação roda, ele sobe e aparece.
+    O "forwards" garante que ele fique visivel depois.
 
-   ESTRUTURA:
-   - .card-border  -> camada com gradiente cônico (borda mágica)
-   - .card-shine   -> faixa de luz que passa diagonal no hover
-   - .card-inner   -> conteúdo real (tag, h2, p, learn-more)
-   ============================================================ */
+    O delay usa --i (definido no HTML como style="--i:1")
+    pra que cada card espere um pouquinho mais que o anterior
+    — efeito de entrada em cascata.
+
+    Estrutura interna de cada card:
+    .card-border  → a borda colorida girando
+    .card-shine   → a luz que passa no hover
+    .card-inner   → o conteúdo de verdade
+
+*/
 .subject-card {
     position: relative;
     min-height: clamp(180px, 28vw, 220px);
@@ -238,11 +230,11 @@ body {
     text-decoration: none;
     color: inherit;
     display: flex;
-    isolation: isolate;          /* cria contexto pra z-index local (importante pro ::before) */
+    isolation: isolate;          /* isola o z-index desse card dos outros elementos */
 
     transition: var(--transition-smooth);
 
-    /* Estado inicial (antes da animação rodar). */
+    /* começa invisível e deslocado pra baixo */
     opacity: 0;
     transform: translateY(30px);
 
@@ -254,10 +246,11 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* HOVER do card:
-   - Sobe 8px e cresce 1%.
-   - Borda fica mais clara.
-   - Sombra grande com a cor accent da matéria. */
+/* 
+    No hover: sobe um pouco, cresce levemente,
+   borda fica mais clara e aparece uma sombra
+   colorida com a cor da matéria.
+*/
 .subject-card:hover {
     transform: translateY(-8px) scale(1.01);
     border-color: rgba(255, 255, 255, 0.18);
@@ -265,28 +258,29 @@ body {
                 0 0 30px -5px var(--accent, rgba(56, 189, 248, 0.3));
 }
 
-/* No tap (mobile) dá um feedback rápido de "afundar". */
+/*  No toque (celular) o card afunda rapido pra dar feedback */
 .subject-card:active {
     transform: translateY(-2px) scale(0.99);
 }
 
-/* ------------------------------------------------------------
-   BORDA GRADIENTE GIRANDO (.card-border)
-   ------------------------------------------------------------
-   Truque: criamos uma camada absoluta MAIOR que o card com um
-   conic-gradient. Ela fica "girando" por trás do background do
-   card, mas como o card tem overflow:hidden e border-radius,
-   só aparece a faixa colorida pelas bordas.
-   No hover, opacity sobe pra ficar visível.
-   ------------------------------------------------------------ */
+/* 
+    BORDA GIRANDO (.card-border)
+   
+    Uma camada maior que o card fica girando por trás dele.
+    Como o card tem overflow:hidden, só aparece a faixa
+    colorida nas bordas — parece uma borda animada.
+    Fica visível mesmo só quando passa o mouse.
+*/
 
 .subject-card:hover .card-border {
     opacity: 0.8;
 }
 
-/* @property registra a variável --angle como tipo angle.
-   Sem isso, navegadores não conseguem interpolar gradientes
-   cônicos animando o ângulo. */
+/* 
+    @property é necessário aqui: sem registrar --angle
+   como ângulo, o browser não consegue animar o gradiente
+   conico — simplesmente não funciona de outro jeito
+*/
 @property --angle {
     syntax: '<angle>';
     initial-value: 0deg;
@@ -298,16 +292,18 @@ body {
     to   { --angle: 360deg; }
 }
 
-/* ------------------------------------------------------------
-   SHINE / SWEEP (.card-shine)
-   ------------------------------------------------------------
-   Uma faixa branca diagonal posicionada FORA do card (left:-100%).
-   No :hover, ela viaja até a direita — efeito de "brilho passando".
-   ------------------------------------------------------------ */
+/* 
+     LUZ PASSANDO NO HOVER (.card-shine)
+   
+    Uma faixa branca diagonal que começa escondida a esquerda.
+    Quando passa o mouse, ela desliza até a direita e some —
+    parece um reflexo de luz passando pelo card.
+
+*/
 .card-shine {
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -100%;                 /* começa fora do card, a esquerda */
     width: 80%;
     height: 100%;
     background: linear-gradient(115deg,
@@ -332,8 +328,10 @@ body {
     width: 100%;
 }
 
-/* TAG (pill colorida com nome da área).
-   Animação "float-y" suave — sobe e desce 3px continuamente. */
+/* 
+    Pílula colorida com o nome da área.
+   Fica subindo e descendo 3px em loop — bem sutil.
+*/
 .subject-tag {
     align-self: flex-start;
     font-size: clamp(0.65rem, 1.4vw, 0.72rem);
@@ -366,9 +364,11 @@ body {
     flex: 1;
 }
 
-/* "ACESSAR →" + seta separada.
-   - .learn-more fica mais visível no hover.
-   - .arrow desliza 6px pra direita no hover. */
+/* 
+    Texto "ACESSAR" no rodapé do card
+    Fica meio apagado por padrão e acende no hover
+    A setinha desliza 6px pra direita separadamente
+*/
 .learn-more {
     display: inline-flex;
     align-items: center;
@@ -398,19 +398,21 @@ body {
     transform: translateX(6px);
 }
 
-/* Variável --accent por matéria.
-   Cada card no HTML tem data-subject="java|php|web|db". */
+/* 
+    Cada matéria define sua própria cor de destaque.
+    O atributo data-subject no HTML aciona a regra certa
+*/
 .subject-card[data-subject="java"] { --accent: var(--accent-java); }
 .subject-card[data-subject="php"]  { --accent: var(--accent-php); }
 .subject-card[data-subject="web"]  { --accent: var(--accent-web); }
 .subject-card[data-subject="db"]   { --accent: var(--accent-db); }
 
-/* ============================================================
-   PÁGINAS DAS MATÉRIAS (java/, php/, db/, html-css-js/)
-   ------------------------------------------------------------
-   .subject-page é o container principal das subpáginas.
-   .back-link volta para o hub.
-   ============================================================ */
+/* 
+    PÁGINAS INTERNAS (java/, php/, db/, html-css-js/)
+  
+    Container principal de cada subpágina.
+    O link de voltar também fica aqui.
+*/
 .subject-page {
     max-width: 820px;
     margin: 0 auto;
@@ -445,11 +447,13 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* ============================================================
-   BLOCO DE CÓDIGO (usado nas páginas java/php/db/html-css-js)
-   ------------------------------------------------------------
-   ANIMAÇÃO "fadeInUp" — sobe e aparece com delay.
-   ============================================================ */
+/* 
+    BLOCO DE CÓDIGO
+   
+    Sobe e aparece com um pequeno atraso — entra depois
+    do restante do conteúdo pra não tudo aparecer junto.
+
+*/
 .wrap {
     max-width: 820px;
     margin: clamp(20px, 5vw, 40px) auto clamp(40px, 8vw, 80px);
@@ -556,9 +560,9 @@ body {
 .tok-num { color: #fbbf24; }
 .tok-com { color: #64748b; font-style: italic; }
 
-/* ============================================================
+ /* 
    FOOTER
-   ============================================================ */
+ */
 .hub-footer {
     margin-top: auto;
     text-align: center;
@@ -570,14 +574,17 @@ body {
     backdrop-filter: blur(8px);
 }
 
-/* ============================================================
-   ESTRUTURA DE TEXTO DAS SUBPÁGINAS
-   ------------------------------------------------------------
-   Organiza o conteúdo em: .lead (intro), .topic (seção com
-   subtítulo + barra de accent), .bullets (lista), .steps
-   (lista numerada) e .note (callout). A cor vem da variável
-   --page-accent definida em cada .subject-page.
-   ============================================================ */
+/* 
+     CONTEÚDO DAS PÁGs. INTERNAS
+  
+    Cada tipo de bloco tem sua própria classe:
+    .lead    → parágrafo de introdução
+    .topic   → seção com título e barra colorida do lado
+    .bullets → lista com bolinhas
+    .steps   → lista numerada (passo a passo)
+    .note    → destaque / aviso lateral
+    A cor de cada página vem de --page-accent.
+*/
 .subject-page .lead {
     font-size: clamp(1rem, 2.4vw, 1.12rem);
     line-height: 1.75;
@@ -650,13 +657,14 @@ body {
     color: #cbd5e1; line-height: 1.6;
 }
 
-/* ============================================================
-   ILUSTRAÇÕES / DIAGRAMAS (figuras animadas nas subpáginas)
-   ------------------------------------------------------------
-   .diagram = <figure> com legenda. Os elementos internos têm
-   suas próprias animações de entrada em cascata (--i).
-   Keyframes novos: draw, nodeIn, popIn, slideInLeft, bob.
-   ============================================================ */
+/* 
+    DIAGRAMAS E ILUSTRAÇÕES
+  
+    Cada <figure> com a classe .diagram tem legenda embaixo.
+    Os elementos internos entram em cascata usando --i,
+    igual aos cards da home.
+    Keyframes usados aqui: draw, nodeIn, popIn, slideInLeft, bob.
+*/
 .diagram { margin: 0 auto 34px; }
 .diagram img {
     display: block;
@@ -805,22 +813,22 @@ body {
     animation: bob 1.8s ease-in-out infinite;
 }
 
-/* ============================================================
-   RESPONSIVO — BREAKPOINTS
-   ------------------------------------------------------------
-   Mobile-first: layout base é 1 coluna. Vamos abrindo o grid
-   conforme a tela cresce.
-   ============================================================ */
+/* 
+    RESPONSIVO — BREAKPOINTS
+   
+    Layout mobile-first: começa em 1 coluna e vai abrindo
+    conforme a tela fica maior.
 
-/* >= 700px : tablet em retrato — vira 2 colunas (force-2x2) */
+*/
+
+/* Tablet em retrato (700px+): vira 2 coluna */
 @media (min-width: 700px) {
     .hub-grid.force-2x2 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* <= 480px : celular pequeno — diminui paddings extras
-   e força gap menor. */
+/* Celular pequeno (até 480px): reduz padding e empilha o logo */
 @media (max-width: 480px) {
     .hub-header .logo {
         flex-direction: column;
@@ -829,23 +837,26 @@ body {
     .subject-card { min-height: 0; padding: 20px; }
 }
 
-/* Telas largas (>= 1200px) — limita tamanho do card pra
-   o conteúdo não ficar nadando no espaço. */
+/* Tela grande (1200px+): aumenta o gap entre os cards */
 @media (min-width: 1200px) {
     .hub-grid { gap: 32px; }
 }
 
-/* Touch / sem hover: dispositivos sem mouse não disparam
-   :hover. Mostramos uma versão "leve" do hover sempre ativa
-   pra dar feedback visual no toque (a borda mais clara). */
+/* 
+    Dispositivo sem mouse (celular/tablet): o hover não existe,
+   então deixamos a borda um pouco mais clara sempre visível
+   pra dar algum feedback visual. A borda giratória também
+   some pra não gastar bateria à toa.
+*/
 @media (hover: none) {
     .subject-card { border-color: rgba(255, 255, 255, 0.12); }
-    /* Desliga a borda girando pra não comer bateria em mobile. */
     .card-border { animation: none; }
 }
 
-/* Acessibilidade: se o usuário pediu "menos movimento" no SO,
-   desliga praticamente todas as animações (boa prática WCAG). */
+/* 
+    Se o usuário ativou "reduzir movimento" no sistema operacional,
+    desligamos todas as animações. É uma boa pratica de acessibilidade 
+*/
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

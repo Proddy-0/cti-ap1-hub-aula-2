@@ -47,7 +47,7 @@
                 <li>O tamanho é definido na criação e <strong>não pode ser alterado</strong> depois.</li>
                 <li>Cada elemento é acessado por um índice — que sempre começa em <strong>0</strong>.</li>
             </ul>
-            <p class="note">⚠️ Acessar uma posição fora dos limites dispara
+            <p class="note">Acessar uma posição fora dos limites dispara
                 <strong>ArrayIndexOutOfBoundsException</strong>. Combinar <strong>arrays + Random + try-catch</strong>
                 deixa o programa mais robusto (veja o exemplo abaixo).</p>
         </div>
@@ -55,14 +55,10 @@
     </section>
 
     <!--
-      ============================================================
-      VISUALIZAÇÃO DE ARRAY (HTML/CSS)
-      ------------------------------------------------------------
-      Mostra int[] vet = new int[5] (índices 0..4) preenchido com
-      Random, e a célula vermelha do índice 5 (fora dos limites)
-      que dispara ArrayIndexOutOfBoundsException. Células entram
-      em cascata (--i). Classe .array-viz no style.css.
-      ============================================================
+         VISUALIZAÇÃO DE ARRAY
+            Mostra int[5] com índices 0..4 + célula vermelha no indice 5
+            (fora do limite = ArrayIndexOutOfBoundsException).
+            Células entram em cascata via --i. Estilos em .array-viz
     -->
     <section class="wrap">
         <figure class="diagram">
@@ -79,14 +75,11 @@
     </section>
 
     <!--
-      ============================================================
-      BLOCO DE CÓDIGO
-      ============================================================
-      Mesma estrutura do hub: .code-block + .code-head + .code-body.
-      Animação "fadeInUp" aplicada em .wrap (ver CSS).
-      Os spans .tok-* dão a cor da sintaxe (key, fn, str, num, com).
-      Os números de linha em .line-numbers são escritos à mão —
-      ajuste se mudar a quantidade de linhas do código.
+      BLOCO DE CÓDIGO — Java
+        Estrutura padrão: .code-block > .code-head + .code-body
+        wrap entra com fadeInUp (ver CSS)
+        tok-* colore a sintaxe (key, fn, str, num, com)
+        Numeros de linha são manuais — atualize se mudar o código
     -->
     <section class="wrap">
         <figure class="diagram">

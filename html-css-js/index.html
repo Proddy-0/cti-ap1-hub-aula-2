@@ -47,20 +47,23 @@
                 <li>O <strong>console</strong> (tecla <code>F12</code>) é o primeiro contato: testar comandos e ver erros.</li>
                 <li><code>console.log()</code> exibe mensagens e valores durante o desenvolvimento.</li>
             </ul>
-            <p class="note">🧪 O console é essencial para testes e depuração — ajuda a entender o código antes de
+            <p class="note"> O console é essencial para testes e depuração — ajuda a entender o código antes de
                 aplicá-lo na página.</p>
         </div>
 
     </section>
 
     <!--
-      ============================================================
-      CAMADAS (HTML/CSS/JS) + DEMO AO VIVO DE ANIMAÇÃO
-      ------------------------------------------------------------
-      .layers = as 3 camadas da web. .demo = exemplo real: o botão
-      usa transition (hover) e a bolinha usa @keyframes. Assim a
-      própria página demonstra o que o texto explica.
-      ============================================================
+      CAMADAS (HTML / CSS / JS) + DEMO AO VIVO
+   
+        layers - mostra as 3 camadas da web empilhadas visualmente.
+
+        demo - um exemplo real e clicável logo abaixo:
+         O botão usa transition (efeito suave no hover)
+         A bolinha usa @keyframes (animação em loop)
+
+        A ideia é que a própria página demonstre na prática
+        o que o texto acabou de explicar.
     -->
     <section class="wrap">
         <figure class="diagram">
@@ -79,11 +82,18 @@
     </section>
 
     <!--
-      ============================================================
       BLOCO DE CÓDIGO — JavaScript
-      ============================================================
-      Estrutura padrão de code-block. Para realçar a sintaxe,
-      envolva os trechos em spans com classes .tok-* (ver CSS).
+  
+        Mesma estrutura padrão usada em todos os blocos de código
+        do projeto (.code-block, .code-head, .code-body).
+
+        Para colorir a sintaxe, foi envolvido cada trecho num <span>
+        com a classe correspondente:
+        .tok-key → palavras-chave (function, const, return...)
+        .tok-fn  → nome de funções
+        .tok-str → textos entre aspas
+        .tok-num → valores numéricos
+        .tok-com → comentários
     -->
     <section class="wrap">
         <figure class="diagram">

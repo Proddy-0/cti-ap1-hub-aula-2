@@ -47,19 +47,16 @@
             <p>Com a conexão ativa, aplicamos o <strong>CRUD</strong> — as quatro operações fundamentais de qualquer
                 sistema (veja o diagrama abaixo). Elas ficam organizadas em <strong>funções</strong>, deixando o código
                 limpo, reutilizável e fácil de manter.</p>
-            <p class="note">🔒 Usar <strong>prepare</strong> + <strong>bindParam</strong> protege o sistema contra
+            <p class="note"> Usar <strong>prepare</strong> + <strong>bindParam</strong> protege o sistema contra
                 ataques de <strong>SQL Injection</strong>.</p>
         </div>
 
     </section>
 
     <!--
-      ============================================================
-      DIAGRAMA: fluxo PDO (PHP -> PDO -> PostgreSQL) + CRUD
-      ------------------------------------------------------------
-      Feito com HTML/CSS (.flow e .crud-strip). Entram em cascata
-      (--i) e têm hover. Classes definidas no style.css.
-      ============================================================
+      DIAGRAMA: fluxo PDO + CRUD
+        PHP → PDO → PostgreSQL, feito com .flow e .crud-strip
+        Hover e entrada em cascata via --i (estilos em style.css) 
     -->
     <section class="wrap">
         <figure class="diagram">
@@ -80,12 +77,9 @@
     </section>
 
     <!--
-      ============================================================
-      BLOCO DE CÓDIGO — PHP
-      ============================================================
-      Mesma estrutura: .code-block + .code-head + .code-body.
-      Para destacar a sintaxe use os spans .tok-key / .tok-fn /
-      .tok-str / .tok-num / .tok-com (definidos no CSS).
+       BLOCO DE CÓDIGO — PHP
+        Estrutura padrão: .code-block > .code-head + .code-body
+        .tok-* colore a sintaxe (key, fn, str, num, com)
     -->
     <section class="wrap">
         <figure class="diagram">
