@@ -1,29 +1,42 @@
-/* 
-     1) VARIÁVEIS: em vez de repetir a mesma cor 20 vezes,  
-        a gente salva ela em :root e usa var(--nome)       
-        Cada matéria tem sua cor própria via data-subject  
-                                                             
-     2) ANIMAÇÕES EM CASCATA: os cards não entram todos      
-        juntos — cada um espera um pouquinho a mais com      
-        animation-delay O número --i no HTML define a vez   
-        de cada card entrar.                                 
-                                                            
-     3) RESPONSIVO: o layout começa pensado pro celular e    
-        vai crescendo clamp() ajusta tamanhos sozinho,     
-       sem precisar de media query pra cada detalhe        
-                                                             
-     4) EFEITOS ESPECIAIS: vidro fosco (backdrop-filter),    
-        borda colorida girando (conic-gradient + @property), 
-        e respeito a quem prefere menos movimento na tela  
-                                                            
-      HTML                                                    
-     1) TAGS CERTAS: <header>, <section>, <footer>,          
-        <figure>. A classe .hub no <body> liga os efeitos    
-        pesados só na página inicial.                        
-                                                             
-     2) ACESSIBILIDADE: toda imagem tem alt de verdade.      
-        Elementos só decorativos têm aria-hidden pra não     
-       atrapalhar leitores de tela.                     
+.craft-back {
+    position: fixed; top: 16px; left: 16px; z-index: 999;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 999px;
+    background: rgba(9, 7, 15, .78); backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 124, 229, .35);
+    color: #f4efff; text-decoration: none;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", ui-monospace, monospace;
+    font-size: .8rem; font-weight: 500;
+    transition: border-color .18s, color .18s, transform .18s;
+}
+.craft-back:hover { border-color: #9d7ce5; color: #9d7ce5; transform: translateX(-2px); }
+
+/*
+     1) VARIÁVEIS: em vez de repetir a mesma cor 20 vezes,
+        a gente salva ela em :root e usa var(--nome)
+        Cada matéria tem sua cor própria via data-subject
+
+     2) ANIMAÇÕES EM CASCATA: os cards não entram todos
+        juntos — cada um espera um pouquinho a mais com
+        animation-delay O número --i no HTML define a vez
+        de cada card entrar.
+
+     3) RESPONSIVO: o layout começa pensado pro celular e
+        vai crescendo clamp() ajusta tamanhos sozinho,
+       sem precisar de media query pra cada detalhe
+
+     4) EFEITOS ESPECIAIS: vidro fosco (backdrop-filter),
+        borda colorida girando (conic-gradient + @property),
+        e respeito a quem prefere menos movimento na tela
+
+      HTML
+     1) TAGS CERTAS: <header>, <section>, <footer>,
+        <figure>. A classe .hub no <body> liga os efeitos
+        pesados só na página inicial.
+
+     2) ACESSIBILIDADE: toda imagem tem alt de verdade.
+        Elementos só decorativos têm aria-hidden pra não
+       atrapalhar leitores de tela.
 */
 
 /* 
