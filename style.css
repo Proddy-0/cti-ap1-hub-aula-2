@@ -1,3 +1,16 @@
+.craft-back {
+    position: fixed; top: 16px; left: 16px; z-index: 999;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 999px;
+    background: rgba(9, 7, 15, .78); backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 124, 229, .35);
+    color: #f4efff; text-decoration: none;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", ui-monospace, monospace;
+    font-size: .8rem; font-weight: 500;
+    transition: border-color .18s, color .18s, transform .18s;
+}
+.craft-back:hover { border-color: #9d7ce5; color: #9d7ce5; transform: translateX(-2px); }
+
 /* ████████████████████████████████████████████████████████████
    HUB AULA 2 — folha de estilo  ·  Aysllan · Gabrieli · Luiza
    ████████████████████████████████████████████████████████████
